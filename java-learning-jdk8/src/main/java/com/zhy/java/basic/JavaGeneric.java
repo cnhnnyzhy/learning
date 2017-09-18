@@ -8,13 +8,13 @@ public class JavaGeneric {
 		System.out.println("method(List<String> list)");
 		return "";
 	}
-	public static int method(List<Integer> list){
+	public static int method(List<Integer> list, String a){
 		System.out.println("method(List<Integer> list)");
 		return 1;
 	}
 	
 	public static void main(String[] args) {
 		method(new ArrayList<String>());
-		method(new ArrayList<Integer>());
+		method(new ArrayList<Integer>(), "");
 	}
 }
