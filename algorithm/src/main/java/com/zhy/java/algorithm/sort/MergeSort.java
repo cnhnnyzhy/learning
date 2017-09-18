@@ -1,4 +1,4 @@
-package com.zhy.java.algorithm.order.merge;
+package com.zhy.java.algorithm.sort;
 
 import java.util.Arrays;
 
