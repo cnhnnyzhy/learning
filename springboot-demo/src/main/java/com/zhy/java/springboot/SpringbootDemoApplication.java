@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.zhy.java.springboot.dao")
 @SpringBootApplication
 public class SpringbootDemoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootDemoApplication.class, args);
 	}
