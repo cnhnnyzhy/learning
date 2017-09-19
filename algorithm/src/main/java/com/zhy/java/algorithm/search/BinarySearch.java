@@ -22,6 +22,7 @@ public class BinarySearch {
         low = 0;
         hight = datas.length - 1;
         int count = 0;
+        //此处使用的是while循环，也可能使用递归方法调用的方式实现
         while(low <= hight){
             count++;
             System.out.println("循环"+count+"次");
