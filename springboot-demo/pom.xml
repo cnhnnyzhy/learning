@@ -17,7 +17,20 @@
 		<version>1.5.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
+	<distributionManagement>
+	<!-- blueair项目发布版本资源库配置 -->
+	<repository>
+		<id>blueair-release</id>
+		<name>blueair release resp</name>
+		<url>http://192.168.217.10:8081/nexus/content/repositories/releases/</url>
+	</repository>
+	<!-- blueair项目开发版本资源库配置 -->
+	<snapshotRepository>
+		<id>blueair-snapshots</id>
+		<name>blueair snapshots resp</name>
+		<url>http://192.168.217.10:8081/nexus/content/repositories/snapshots/</url>
+	</snapshotRepository>
+</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
