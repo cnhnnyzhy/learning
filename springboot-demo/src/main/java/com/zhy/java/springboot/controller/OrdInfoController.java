@@ -3,13 +3,12 @@ package com.zhy.java.springboot.controller;
 import com.ifec.blueair.framework.controller.RestBaseController;
 import com.ifec.blueair.framework.util.ResponseVOUtil;
 import com.ifec.blueair.framework.vo.ResponseVO;
+import com.zhy.java.springboot.model.OrdInfo;
 import com.zhy.java.springboot.service.IOrderService;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,6 +30,13 @@ public class OrdInfoController extends RestBaseController{
 	@ResponseBody
 	public ResponseVO<List<Map<String, Object>>> getListWithPaging(HttpServletRequest request) {
 		return ResponseVOUtil.generateSuccessTResponseVO(orderService.getOrderList(null));
+	}
+	@ApiOperation(value = "保存订单接口", notes = "保存订单")
+	@PostMapping("/save")
+	@ResponseBody
+	public ResponseVO<String> saveOrder(@ModelAttribute("model") OrdInfo ordInfo){
+		orderService.saveOrder(ordInfo);
+		return ResponseVOUtil.generateSuccessResponseVO("订单保存成功！");
 	}
 
 	
