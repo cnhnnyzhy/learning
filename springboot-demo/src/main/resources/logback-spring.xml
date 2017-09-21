@@ -157,15 +157,35 @@
 
     <logger name="org.springframework" level="WARN" />
     <logger name="org.hibernate" level="WARN" />
-    <logger name="org.apache.ibatis" level="WARN" />
+    <logger name="org.apache.ibatis" level="DEBUG" />
 
     <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
-    <root level="debug">
-        <appender-ref ref="FILEERROR" />
-        <appender-ref ref="FILEWARN" />
-        <appender-ref ref="FILEINFO" />
-        <appender-ref ref="FILEDEBUG" />
-        <!-- 生产环境将请stdout,testfile去掉 -->
-        <appender-ref ref="STDOUT" />
-    </root>
+    <springProfile name="dev">
+        <root level="debug">
+            <appender-ref ref="FILEERROR" />
+            <appender-ref ref="FILEWARN" />
+            <appender-ref ref="FILEINFO" />
+            <appender-ref ref="FILEDEBUG" />
+            <!-- 生产环境将请stdout,testfile去掉 -->
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <springProfile name="test">
+        <root level="info">
+            <appender-ref ref="FILEERROR" />
+            <appender-ref ref="FILEWARN" />
+            <appender-ref ref="FILEINFO" />
+            <appender-ref ref="FILEDEBUG" />
+            <!-- 生产环境将请stdout,testfile去掉 -->
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <root level="error">
+            <appender-ref ref="FILEERROR" />
+            <appender-ref ref="FILEWARN" />
+            <appender-ref ref="FILEINFO" />
+            <appender-ref ref="FILEDEBUG" />
+        </root>
+    </springProfile>
 </configuration>
