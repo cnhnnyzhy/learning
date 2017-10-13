@@ -1,16 +1,9 @@
 package com.zhy.java.interview.jd.q001;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
-
 public class A  extends  Thread{
-    ReentrantLock reentrantLock;
-    Condition aCondition;
-    Condition bCondition;
-    public A(ReentrantLock reentrantLock, Condition aCondition, Condition bCondition){
-        this.reentrantLock = reentrantLock;
-        this.aCondition = aCondition;
-        this.bCondition = bCondition;
+    ThreadLoopPrint3 print;
+    public A(ThreadLoopPrint3 print){
+        this.print = print;
     }
     /**
      * If this thread was constructed using a separate
@@ -27,15 +20,15 @@ public class A  extends  Thread{
     @Override
     public void run(){
         while (true){
-            reentrantLock.lock();
+            print.reentrantLock.lock();
             try{
                 System.out.print("A,");
-                bCondition.signal();
-                aCondition.await();
+                print.bCondition.signal();
+                print.aCondition.await();
             }catch (Exception e){
                 e.printStackTrace();
             }
-            reentrantLock.unlock();
+            print.reentrantLock.unlock();
         }
     }
 }

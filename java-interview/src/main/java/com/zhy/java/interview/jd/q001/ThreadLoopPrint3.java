@@ -16,8 +16,8 @@ public class ThreadLoopPrint3 {
 
     public static void main(String[] args){
         ThreadLoopPrint3 print = new ThreadLoopPrint3();
-        A a = new A(print.reentrantLock, print.aCondition, print.bCondition);
-        B b = new B(print.reentrantLock, print.aCondition, print.bCondition);
+        A a = new A(print);
+        B b = new B(print);
 
         a.start();
         b.start();
