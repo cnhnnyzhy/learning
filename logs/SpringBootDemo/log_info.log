@@ -1,0 +1,24 @@
+===2017-09-21 17:22:05.321 INFO  com.zhy.java.springboot.SpringbootDemoApplication Line:48  - Starting SpringbootDemoApplication on DESKTOP-71KE9IV with PID 18592 (D:\intellij-work\learning\springboot-demo\target\classes started by Ocean in D:\intellij-work\learning\springboot-demo)
+===2017-09-21 17:22:05.324 INFO  com.zhy.java.springboot.SpringbootDemoApplication Line:597 - The following profiles are active: dev
+===2017-09-21 17:22:07.684 INFO  org.apache.catalina.core.StandardService Line:179 - Starting service [Tomcat]
+===2017-09-21 17:22:07.684 INFO  org.apache.catalina.core.StandardEngine Line:179 - Starting Servlet Engine: Apache Tomcat/8.5.20
+===2017-09-21 17:22:07.784 INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Line:179 - Initializing Spring embedded WebApplicationContext
+===2017-09-21 17:22:09.417 INFO  org.mongodb.driver.cluster Line:71  - Cluster created with settings {hosts=[192.168.217.27:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=32}
+===2017-09-21 17:22:09.464 INFO  org.mongodb.driver.connection Line:71  - Opened connection [connectionId{localValue:1, serverValue:3440}] to 192.168.217.27:27017
+===2017-09-21 17:22:09.464 INFO  org.mongodb.driver.cluster Line:71  - Monitor thread successfully connected to server with description ServerDescription{address=192.168.217.27:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 0, 4]}, minWireVersion=0, maxWireVersion=3, maxDocumentSize=16777216, roundTripTimeNanos=716641}
+===2017-09-21 17:22:10.618 INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper Line:120 - Context refreshed
+===2017-09-21 17:22:10.633 INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper Line:123 - Found 1 custom documentation plugin(s)
+===2017-09-21 17:22:10.633 INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner Line:41  - Scanning for api listing references
+===2017-09-21 17:22:11.239 INFO  org.apache.coyote.http11.Http11NioProtocol Line:179 - Initializing ProtocolHandler ["http-nio-8081"]
+===2017-09-21 17:22:11.239 INFO  org.apache.coyote.http11.Http11NioProtocol Line:179 - Starting ProtocolHandler ["http-nio-8081"]
+===2017-09-21 17:22:11.255 INFO  org.apache.tomcat.util.net.NioSelectorPool Line:179 - Using a shared selector for servlet write/read
+===2017-09-21 17:22:11.287 INFO  com.zhy.java.springboot.SpringbootDemoApplication Line:57  - Started SpringbootDemoApplication in 6.623 seconds (JVM running for 7.713)
+===2017-09-21 17:22:29.256 INFO  com.zhy.java.springboot.SpringbootDemoApplicationTests Line:48  - Starting SpringbootDemoApplicationTests on DESKTOP-71KE9IV with PID 13840 (started by Ocean in D:\intellij-work\learning\springboot-demo)
+===2017-09-21 17:22:29.261 INFO  com.zhy.java.springboot.SpringbootDemoApplicationTests Line:597 - The following profiles are active: dev
+===2017-09-21 17:22:35.214 INFO  org.mongodb.driver.cluster Line:71  - Cluster created with settings {hosts=[192.168.217.27:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=32}
+===2017-09-21 17:22:35.393 INFO  org.mongodb.driver.connection Line:71  - Opened connection [connectionId{localValue:1, serverValue:3441}] to 192.168.217.27:27017
+===2017-09-21 17:22:35.396 INFO  org.mongodb.driver.cluster Line:71  - Monitor thread successfully connected to server with description ServerDescription{address=192.168.217.27:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 0, 4]}, minWireVersion=0, maxWireVersion=3, maxDocumentSize=16777216, roundTripTimeNanos=827258}
+===2017-09-21 17:22:37.422 INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper Line:120 - Context refreshed
+===2017-09-21 17:22:37.457 INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper Line:123 - Found 1 custom documentation plugin(s)
+===2017-09-21 17:22:37.473 INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner Line:41  - Scanning for api listing references
+===2017-09-21 17:22:38.582 INFO  com.zhy.java.springboot.SpringbootDemoApplicationTests Line:57  - Started SpringbootDemoApplicationTests in 10.247 seconds (JVM running for 11.608)
