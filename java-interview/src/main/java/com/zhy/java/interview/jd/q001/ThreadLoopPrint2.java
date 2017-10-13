@@ -19,6 +19,7 @@ public class ThreadLoopPrint2 {
 
         a.start();
         b.start();
+        System.out.println("test");
     }
 
     class A extends Thread{
