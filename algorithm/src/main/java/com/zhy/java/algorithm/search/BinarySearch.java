@@ -3,6 +3,7 @@ package com.zhy.java.algorithm.search;
 /**
  * 二分查找算法
  * 从一个有顺序的数组中查找某个元素
+ * 1
  */
 public class BinarySearch {
     public static void main(String[] args) {
