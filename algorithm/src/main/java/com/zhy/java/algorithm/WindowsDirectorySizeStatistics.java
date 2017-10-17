@@ -36,7 +36,7 @@ public class WindowsDirectorySizeStatistics {
             } else {
                 size = childFile.length();
             }
-            if (gtSize > 0 && size > gtSize) {
+            if (gtSize <= 0 || size > gtSize) {
                 System.out.println(MessageFormat.format("{0}[{1}]", childFile.getPath(), transFileSize(size)));
             }
         }
@@ -60,7 +60,7 @@ public class WindowsDirectorySizeStatistics {
     }
 
     private String transFileSize(long size) {
-        double kb = size / 1000;
+        double kb = (double) size / 1000;
         double mb = kb / 1024;
         double gb = kb / (1024 * 1024);
         StringBuffer sb = new StringBuffer();
@@ -79,8 +79,10 @@ public class WindowsDirectorySizeStatistics {
         dirPath = "c:/";
         //dirPath = "c:\\Windows";
         dirPath = "c:\\Users\\yang.zhang3\\AppData\\Local";
+        dirPath = "e:/迅雷下载";
         dirPath = "d:/";
         long gtSize = 1 * 1024 * 1000;
+        gtSize = -1;
         WindowsDirectorySizeStatistics windowsDirectorySizeStatistics = new WindowsDirectorySizeStatistics(dirPath, gtSize);
         windowsDirectorySizeStatistics.statistics();
     }
