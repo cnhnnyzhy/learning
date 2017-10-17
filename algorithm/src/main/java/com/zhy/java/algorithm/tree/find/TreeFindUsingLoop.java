@@ -14,6 +14,9 @@ import java.util.Set;
  * @create 2017/10/17
  */
 public class TreeFindUsingLoop extends TreeFind {
+    /**
+     * 保存需要遍历的文件夹
+     */
     private LinkedList<File> dirList;
 
     public TreeFindUsingLoop(String rootPath, Set<String> matchSuffix) {
