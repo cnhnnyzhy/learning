@@ -10,150 +10,74 @@
         .demo { overflow:auto; border:1px solid silver; min-height:100px; }
     </style>
     <link rel="stylesheet" href="./jstree/dist/themes/default/style.min.css" />
+    <link rel="stylesheet" href="./ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 </head>
 <body>
 <h1>根目录：<input type="text" id="rootPath" value="c:/log"/>
-<input type="button" name="统计" onclick="find()" value="统计"/>
+    <input type="button" name="统计" onclick="find()" value="统计"/>
 </h1>
-
-<h1>HTML demo</h1>
-<div id="html" class="demo">
-    <ul>
-        <li data-jstree='{ "opened" : true }'>Root node
-            <ul>
-                <li data-jstree='{ "selected" : true }'>Child node 1</li>
-                <li>Child node 2</li>
-            </ul>
-        </li>
-    </ul>
+<div class="zTreeDemoBackground left">
+    <ul id="treeDemo" class="ztree"></ul>
 </div>
-
-<h1>Inline data demo</h1>
-<div id="data" class="demo"></div>
-
-<h1>Data format demo</h1>
-<div id="frmt" class="demo"></div>
-
-<h1>AJAX demo</h1>
-<div id="ajax" class="demo"></div>
-
-<h1>Lazy loading demo</h1>
-<div id="lazy" class="demo"></div>
-
-<h1>Callback function data demo</h1>
-<div id="clbk" class="demo"></div>
-
-<h1>Interaction and events demo</h1>
-<button id="evts_button">select node with id 1</button> <em>either click the button or a node in the tree</em>
-<div id="evts" class="demo"></div>
-
+<div id="loading"></div>
 <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="./jstree/dist/jstree.min.js"></script>
-<script src="./js/browserFolder.js"></script>
+<script src="./ztree/js/jquery.ztree.all.min.js"></script>
 <script>
-    // html demo
-    $('#html').jstree();
+    <!--
+    var setting = {	};
 
-    // inline data demo
-    $('#data').jstree({
-        'core' : {
-            'data' : [
-                { "text" : "Root node3", "children" : [
-                    { "text" : "Child node 1" },
-                    { "text" : "Child node 2" }
-                ]}
-            ]
-        }
-    });
+    var zNodes =[];
 
-    // data format demo
-    $('#frmt').jstree({
-        'core' : {
-            'data' : [
-                {
-                    "text" : "Root node",
-                    "state" : { "opened" : true },
-                    "children" : [
-                        {
-                            "text" : "Child node 1",
-                            "state" : { "selected" : true },
-                            "icon" : "jstree-file"
-                        },
-                        { "text" : "Child node 2", "state" : { "disabled" : true } }
-                    ]
-                }
-            ]
-        }
+    $(document).ready(function(){
+        // $.fn.zTree.init($("#treeDemo"), setting, zNodes);
     });
+    //-->
 
 
     function find() {
         var rootPath = $('#rootPath').val();
-        // ajax demo
-        $('#ajax').jstree({
-            'core' : {
-                'data' : {
-                    "url" : encodeURI("http://localhost:8080/windows/allfiles?rootPath=" + rootPath),
-                    "dataType" : "json", // needed only if you do not supply JSON headers
-                    "data" : function (data) {
-                        console.log(data);
-                    }
-                }
+        var index = rootPath.indexOf("\\");
+        console.log(rootPath + "|" + index);
+        while ( index != -1){
+            rootPath = rootPath.replace("\\", "/");
+            index =  rootPath.indexOf("\\");
+        }
+        var dirArray = rootPath.split("/");
+        var node;
+        var lastNode = null;
+        for(var i=dirArray.length - 1; i>=0; i--){
+            node = {};
+            node.name = dirArray[i];
+            if(lastNode != null) {
+                node.children = [lastNode];
+            }
+            lastNode = node;
+        }
+        zNodes = [lastNode];
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        $.ajax({
+            url: encodeURI("http://localhost:8080/windows/allfiles?rootPath=" + rootPath),
+            timeout: 30 * 60 * 1000,
+            type: 'GET',
+            beforeSend:function (XMLHttpRequest) {
+                $("#loading").html("<img src='./img/loading.gif' />");
+            },
+            success: function (data, status) {
+                $("#loading").empty();
+                zNodes = data.datas;
+                $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            },
+            complete:function (XMLHttpRequest) {
+                $("#loading").empty();
+            },
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+                $("#loading").empty();
+                alert('error...状态文本值：'+textStatus+" 异常信息："+errorThrown);
             }
         });
     }
 
 
-
-    // lazy demo
-    $('#lazy').jstree({
-        'core' : {
-            'data' : {
-                "url" : "//www.jstree.com/fiddle/?lazy",
-                "data" : function (node) {
-                    return { "id" : node.id };
-                }
-            }
-        }
-    });
-
-    // data from callback
-    $('#clbk').jstree({
-        'core' : {
-            'data' : function (node, cb) {
-                if(node.id === "#") {
-                    cb([{"text" : "Root", "id" : "1", "children" : true}]);
-                }
-                else {
-                    cb(["Child"]);
-                }
-            }
-        }
-    });
-
-    // interaction and events
-    $('#evts_button').on("click", function () {
-        var instance = $('#evts').jstree(true);
-        instance.deselect_all();
-        instance.select_node('1');
-    });
-    $('#evts')
-        .on("changed.jstree", function (e, data) {
-            if(data.selected.length) {
-                alert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);
-            }
-        })
-        .jstree({
-            'core' : {
-                'multiple' : false,
-                'data' : [
-                    { "text" : "Root node", "children" : [
-                        { "text" : "Child node 1", "id" : 1 },
-                        { "text" : "Child node 2" }
-                    ]}
-                ]
-            }
-        });
 </script>
 </body>
 </html>

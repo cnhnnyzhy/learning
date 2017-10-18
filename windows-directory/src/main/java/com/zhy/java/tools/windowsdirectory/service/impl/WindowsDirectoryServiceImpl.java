@@ -1,9 +1,11 @@
 package com.zhy.java.tools.windowsdirectory.service.impl;
 
-import com.ifec.blueair.framework.util.ResponseVOUtil;
-import com.ifec.blueair.framework.vo.ResponseVO;
 import com.zhy.java.tools.windowsdirectory.model.WindowsFileModel;
 import com.zhy.java.tools.windowsdirectory.service.IWindowsDirectoryService;
+import com.zhy.java.tools.windowsdirectory.util.ResponseVOUtil;
+import com.zhy.java.tools.windowsdirectory.vo.ResponseVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -16,6 +18,7 @@ import java.io.File;
  */
 @Service
 public class WindowsDirectoryServiceImpl implements IWindowsDirectoryService {
+    private static final Logger log = LoggerFactory.getLogger(WindowsDirectoryServiceImpl.class);
     /**
      * @param rootPath
      * @Author: Ocean
@@ -36,9 +39,17 @@ public class WindowsDirectoryServiceImpl implements IWindowsDirectoryService {
         if(!rootFile.isDirectory()){
             return ResponseVOUtil.generateCommonErrorResponseVO("根目录不是目录！");
         }
-
+        long bTime = System.currentTimeMillis();
         WindowsDirectorySizeStatistics statistics = new WindowsDirectorySizeStatistics(rootFile, -1);
         WindowsFileModel fileModel = statistics.statistics();
-        return ResponseVOUtil.generateSuccessResponseVO(fileModel);
+        long eTime = System.currentTimeMillis();
+        long t_s = (eTime - bTime) / 1000;
+        long t_m = t_s / 60;
+        long s = t_s % 60;
+        long h = t_m / 60;
+        long m = t_m % 60;
+
+        System.out.println("统计结束，耗时："+h+"时"+m+"分"+s+"秒");
+        return ResponseVOUtil.generateSuccessTResponseVO(fileModel);
     }
 }

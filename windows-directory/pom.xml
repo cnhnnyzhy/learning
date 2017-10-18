@@ -40,11 +40,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.ifec.blueair</groupId>
-			<artifactId>ifec-framework</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
+
 		<!--引入Swagger2的依赖-->
 		<dependency>
 			<groupId>io.springfox</groupId>

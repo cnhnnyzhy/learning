@@ -1,9 +1,9 @@
 package com.zhy.java.tools.windowsdirectory.controller;
 
-import com.ifec.blueair.framework.util.ResponseVOUtil;
-import com.ifec.blueair.framework.vo.ResponseVO;
 import com.zhy.java.tools.windowsdirectory.model.WindowsFileModel;
 import com.zhy.java.tools.windowsdirectory.service.IWindowsDirectoryService;
+import com.zhy.java.tools.windowsdirectory.util.ResponseVOUtil;
+import com.zhy.java.tools.windowsdirectory.vo.ResponseVO;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class WindowsDirectoryController {
     public ResponseVO<WindowsFileModel[]> getAllFileByRootPath(@ApiParam("根目录") @RequestParam String rootPath){
         ResponseVO responseVO = windowsDirectoryService.getAllFileByRootPath(rootPath);
         if(responseVO.isBlueairSuccess()){
-            return ResponseVOUtil.generateSuccessResponseVO(new WindowsFileModel[]{(WindowsFileModel)responseVO.getDatas()});
+            return ResponseVOUtil.generateSuccessTResponseVO(new WindowsFileModel[]{(WindowsFileModel)responseVO.getDatas()});
         }
         return responseVO;
     }

@@ -1,7 +1,7 @@
 package com.zhy.java.tools.windowsdirectory.service;
 
-import com.ifec.blueair.framework.vo.ResponseVO;
 import com.zhy.java.tools.windowsdirectory.model.WindowsFileModel;
+import com.zhy.java.tools.windowsdirectory.vo.ResponseVO;
 
 /**
  * ${DESCRIPTION}
