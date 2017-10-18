@@ -78,9 +78,9 @@ public class WindowsDirectorySizeStatistics {
         String dirPath = "D:\\IdeaProjects\\learning\\java-interview";
         dirPath = "c:/";
         //dirPath = "c:\\Windows";
-        dirPath = "c:\\Users\\yang.zhang3\\AppData\\Local";
-        dirPath = "e:/迅雷下载";
-        dirPath = "d:/";
+//        dirPath = "c:\\Users\\yang.zhang3\\AppData\\Local";
+//        dirPath = "e:/迅雷下载";
+//        dirPath = "d:/";
         long gtSize = 1 * 1024 * 1000;
         gtSize = -1;
         WindowsDirectorySizeStatistics windowsDirectorySizeStatistics = new WindowsDirectorySizeStatistics(dirPath, gtSize);

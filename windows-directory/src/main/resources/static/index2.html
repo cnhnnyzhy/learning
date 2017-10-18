@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jstree basic demos</title>
+    <style>
+        html { margin:0; padding:0; font-size:62.5%; }
+        body { max-width:800px; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
+        h1 { font-size:1.8em; }
+        .demo { overflow:auto; border:1px solid silver; min-height:100px; }
+    </style>
+    <link rel="stylesheet" href="./jstree/dist/themes/default/style.min.css" />
+    <link rel="stylesheet" href="./ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body>
+<h1>根目录：<input type="text" id="rootPath" value="c:/log"/>
+<input type="button" name="统计" onclick="find()" value="统计"/>
+</h1>
+<div class="zTreeDemoBackground left">
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
+<div id="loading"></div>
+<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="./ztree/js/jquery.ztree.all.min.js"></script>
+<script>
+    <!--
+    var setting = {	};
+
+    var zNodes =[];
+
+    $(document).ready(function(){
+       // $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    });
+    //-->
+
+
+    function find() {
+        var rootPath = $('#rootPath').val();
+        $.ajax({
+            url: encodeURI("http://localhost:8080/windows/allfiles?rootPath=" + rootPath),
+            timeout: 30 * 60 * 1000,
+            type: 'GET',
+            beforeSend:function (XMLHttpRequest) {
+                $("#loading").html("<img src='./img/loading.gif' />");
+            },
+            success: function (data, status) {
+                $("#loading").empty();
+                zNodes = data.datas;
+                $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            },
+            complete:function (XMLHttpRequest) {
+                $("#loading").empty();
+            },
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+                $("#loading").empty();
+                alert('error...状态文本值：'+textStatus+" 异常信息："+errorThrown);
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
