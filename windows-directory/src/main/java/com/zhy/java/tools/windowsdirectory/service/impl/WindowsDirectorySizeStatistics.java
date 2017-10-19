@@ -40,7 +40,8 @@ public class WindowsDirectorySizeStatistics {
         }else {
             statisticsDir(dirFile, fileModel);
         }
-        return getLastFileModel(dirFile, fileModel);
+        fileModel.setFileName(fileModel.getFilePath());
+        return fileModel;
     }
 
     private WindowsFileModel getLastFileModel(File file, WindowsFileModel fileModel){

@@ -8,18 +8,25 @@
         body { max-width:800px; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
         h1 { font-size:1.8em; }
         .demo { overflow:auto; border:1px solid silver; min-height:100px; }
+        .box{overflow: hidden}
+        .box1{float: left;}
+        .box_last{ width: 50px;height: 24px;}
+        .box_last img{width:auto;height:30px;}
     </style>
     <link rel="stylesheet" href="./jstree/dist/themes/default/style.min.css" />
     <link rel="stylesheet" href="./ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 </head>
 <body>
-<h1>根目录：<input type="text" id="rootPath" value="c:/log"/>
-    <input type="button" name="统计" onclick="find()" value="统计"/>
-</h1>
+<div  class="box">
+    <div class="box1">根目录：<input type="text" id="rootPath" value="c:/log"/>
+    <input type="button" id="btnS" onclick="find()" value="统计"/>
+    </div>
+    <div  class="box1 box_last" id="loading"></div>
+</div>
 <div class="zTreeDemoBackground left">
     <ul id="treeDemo" class="ztree"></ul>
 </div>
-<div id="loading"></div>
+
 <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="./ztree/js/jquery.ztree.all.min.js"></script>
 <script>
@@ -35,25 +42,26 @@
 
 
     function find() {
+        $('#btnS').attr("disabled", true);
         var rootPath = $('#rootPath').val();
-        var index = rootPath.indexOf("\\");
-        console.log(rootPath + "|" + index);
-        while ( index != -1){
-            rootPath = rootPath.replace("\\", "/");
-            index =  rootPath.indexOf("\\");
-        }
-        var dirArray = rootPath.split("/");
-        var node;
-        var lastNode = null;
-        for(var i=dirArray.length - 1; i>=0; i--){
-            node = {};
-            node.name = dirArray[i];
-            if(lastNode != null) {
-                node.children = [lastNode];
-            }
-            lastNode = node;
-        }
-        zNodes = [lastNode];
+//        var index = rootPath.indexOf("\\");
+//        console.log(rootPath + "|" + index);
+//        while ( index != -1){
+//            rootPath = rootPath.replace("\\", "/");
+//            index =  rootPath.indexOf("\\");
+//        }
+//        var dirArray = rootPath.split("/");
+//        var node;
+//        var lastNode = null;
+//        for(var i=dirArray.length - 1; i>=0; i--){
+//            node = {};
+//            node.name = dirArray[i];
+//            if(lastNode != null) {
+//                node.children = [lastNode];
+//            }
+//            lastNode = node;
+//        }
+        zNodes = [{name:rootPath,children:[]}];
         $.fn.zTree.init($("#treeDemo"), setting, zNodes);
         $.ajax({
             url: encodeURI("http://localhost:8080/windows/allfiles?rootPath=" + rootPath),
@@ -64,14 +72,17 @@
             },
             success: function (data, status) {
                 $("#loading").empty();
+                $('#btnS').attr("disabled", false);
                 zNodes = data.datas;
                 $.fn.zTree.init($("#treeDemo"), setting, zNodes);
             },
             complete:function (XMLHttpRequest) {
                 $("#loading").empty();
+                $('#btnS').attr("disabled", false);
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
                 $("#loading").empty();
+                $('#btnS').attr("disabled", false);
                 alert('error...状态文本值：'+textStatus+" 异常信息："+errorThrown);
             }
         });
