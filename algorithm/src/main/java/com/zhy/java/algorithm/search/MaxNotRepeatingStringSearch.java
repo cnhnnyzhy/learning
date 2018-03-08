@@ -20,6 +20,7 @@ public class MaxNotRepeatingStringSearch {
         String currentChar;
         int repeatIndex;
         int compareLen = 0;
+        String noRepeatStr = null;
         for(int i=0; i<chars.length; i++){
             currentChar = String.valueOf(chars[i]);
             if(i == 0){
@@ -38,7 +39,13 @@ public class MaxNotRepeatingStringSearch {
                 }else if(compareLen == maxLen){
                     maxList.add(compareStr.toString());
                 }
-                compareStr = new StringBuilder(compareStr.substring(repeatIndex + 1));
+                noRepeatStr = compareStr.substring(repeatIndex + 1);
+                //清空已存在的字符串
+                compareStr.setLength(0);
+                if(noRepeatStr != null && noRepeatStr.length() > 0){
+                    compareStr.append(noRepeatStr);
+                }
+                //compareStr = new StringBuilder(compareStr.substring(repeatIndex + 1));
             }
             compareStr.append(currentChar);
             System.out.println(compareStr);
