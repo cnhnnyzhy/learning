@@ -1,4 +1,4 @@
-package com.zhy.java.thread.book1.chapter02;
+package com.zhy.java.thread.book1.chapter02.eg2_2;
 
 /**
  * TODO
