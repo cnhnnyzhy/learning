@@ -10,7 +10,7 @@ package com.zhy.java.algorithm.string;
  */
 public class StringReplace {
     public static void main(String[] args){
-        replace("We are happy.", " ", "%20");
+        replace(null, " ", "%");
     }
     private static void replace(String str, String oldStr, String newStr){
         if(str == null || str.length() <= 0){
@@ -28,9 +28,17 @@ public class StringReplace {
         int lenOfOldStr = 1;
         int lenOfNewStr = newStr.length();
         int addLen = lenOfNewStr - lenOfOldStr;
-        for(int i=0; i<lenOfStr; i++){
-            if(str.charAt(i) == oldChar){
-                newLenOfStr += addLen;
+        if(addLen > 0) {
+            boolean find = false;
+            for (int i = 0; i < lenOfStr; i++) {
+                if (str.charAt(i) == oldChar) {
+                    newLenOfStr += addLen;
+                    find = true;
+                }
+            }
+            if(!find){
+                System.out.println("Not Found!");
+                return;
             }
         }
         char[] newChars = new char[newLenOfStr];
